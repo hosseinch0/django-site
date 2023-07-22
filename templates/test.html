@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{posts}}</h1>
+    {%for post in posts%}
+        {% if post.status == 1%}
+        <h1>{{post.titles}}</h1>
+        <p>{{post.content}}</p>
+        {%else %}
+        <P>NOT PUBLISHED YET</P>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
