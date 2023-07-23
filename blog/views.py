@@ -11,12 +11,20 @@ def blog_view(request):
 
 
 def blog_single(request, pid):
-    posts = get_list_or_404(Post, pk=pid, status = 1)
-    context = {"posts": posts}
+    post = get_list_or_404(Post, pk=pid, status=1)
+    context = {"posts": post}
     return render(request, "blog/blog-single.html", context)
 
 
-def test(request, pid):
-    posts = get_list_or_404(Post, pk=pid)
+def test(request):
+    posts = get_list_or_404(Post)
     context = {"posts": posts}
     return render(request, "test.html", context)
+
+
+def blog_category(request, cat_name):
+    posts = Post.objects.filter(status=1)
+    posts = posts.filter(category__name=cat_name)
+    context = {"posts": posts}
+    return render(request, "blog/blog-home.html", context)
+

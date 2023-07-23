@@ -9,7 +9,7 @@ class Category(models.Model):
         return self.name
 
 class Post(models.Model):
-    image = models.ImageField(upload_to = 'blog/', default="blog/default.jpg")
+    image = models.ImageField(upload_to = 'blog/', default="blog/images/default.jpg")
     author = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
     titles = models.CharField(max_length = 255)
     content = models.TextField()
@@ -26,8 +26,9 @@ class Post(models.Model):
         # verbose_name = "پست"
         # verbose_name_plural = "پست ها"
 
-    # def __str__(self):
-    #     return self.titles
+    def __str__(self):
+        return self.titles
 
-
+    def snippets(self):
+        return self.content[:100] + "..."
 
