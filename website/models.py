@@ -12,3 +12,5 @@ class Contact(models.Model):
 
 
     
+class NewsLetter(models.Model):
+    email = models.EmailField(max_length=255)
