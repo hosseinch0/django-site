@@ -1,4 +1,3 @@
-{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,10 @@
 </head>
 <body>
     <h1 style="text-align: center;"> WEB TEST HEADER</h1>
-    {% post_count %}
+    <form action="{% url 'website:test' %} " method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">submit</button>
+    </form>
 </body>
 </html>
