@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from website.models import Contact
 from website.forms import NameForm,ContactForm,NewsLetterForm
+from django.contrib import messages
 # Create your views here.
 
 def home_view(request):
@@ -17,7 +18,9 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-
+            messages.add_message(request,messages.SUCCESS, "Your information has been received successfully")
+        else:
+            messages.add_message(request, messages.SUCCESS,"ERROR: Something went wrong")
     form = ContactForm()
     return render(request, 'website/contact.html', {'form': form})
 
