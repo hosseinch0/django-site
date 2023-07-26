@@ -2,9 +2,10 @@ from django.shortcuts import render, get_list_or_404
 from django.http import HttpRequest, JsonResponse
 from blog.models import Post
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+# @login_required
 def blog_view(request,**kwargs):
     posts = Post.objects.filter(status=1)
     if kwargs.get('cat_name'):
